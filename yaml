@@ -1,49 +1,39 @@
-openapi: 3.0.0
+swagger: '2.0'
 info:
-  title: Servicio de Gestión de Vinos
+  title: API de Gestión de Usuarios
   version: 1.0.0
+basePath: /api
+schemes:
+  - http
 paths:
   /usuarios:
     post:
-      summary: Añadir un nuevo usuario
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Usuario'
-      responses:
-        '200':
-          description: Usuario añadido correctamente
-        '400':
-          description: Error en los datos del usuario
-  /usuarios/{id}:
-    get:
-      summary: Obtener los datos de un usuario por ID
+      summary: Crea un nuevo usuario
+      consumes:
+        - application/json
+      produces:
+        - application/json
       parameters:
-        - in: path
-          name: id
-          required: true
+        - in: body
+          name: usuario
+          description: Datos del nuevo usuario
           schema:
-            type: integer
+            $ref: '#/definitions/Usuario'
       responses:
         '200':
-          description: Datos del usuario
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Usuario'
-components:
-  schemas:
-    Usuario:
-      type: object
-      properties:
-        id:
-          type: integer
-        nombre:
-          type: string
-        fechaNacimiento:
-          type: string
-          format: date
-        correoElectronico:
-          type: string
+          description: Usuario creado exitosamente
+          schema:
+            $ref: '#/definitions/Usuario'
+definitions:
+  Usuario:
+    type: object
+    properties:
+      id:
+        type: integer
+      nombre:
+        type: string
+      fechaNacimiento:
+        type: string
+        format: date
+      correoElectronico:
+        type: string
