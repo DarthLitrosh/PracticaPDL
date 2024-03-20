@@ -22,18 +22,4 @@ public class UsuarioResource {
         return Response.ok(usuario).build();
     }
 
-    // Clase Usuario interna para simplificar el ejemplo
-    public static class Usuario {
-        public int id;
-        public String nombre;
-        public String fechaNacimiento;
-        public String correoElectronico;
-
-        public Usuario(int id, String nombre, String fechaNacimiento, String correoElectronico) {
-            this.id = id;
-            this.nombre = nombre;
-            this.fechaNacimiento = fechaNacimiento;
-            this.correoElectronico = correoElectronico;
-        }
-    }
 }
