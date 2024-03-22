@@ -31,10 +31,7 @@ public class ClienteApi {
         }
     }
 
-    // Asumiendo que tienes una clase Usuario en algún lugar de tu proyecto
-    public static class Usuario {
-        // Atributos, constructor, getters y setters...
-    }
+   
 
     public static void main(String[] args) {
         // Ejemplo de uso

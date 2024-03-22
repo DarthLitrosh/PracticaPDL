@@ -1,39 +1,95 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
-  title: API de Gestión de Usuarios
-  version: 1.0.0
-basePath: /api
+  title: "API de Gestión de Vinos"
+  description: "Una API RESTful para la gestión y recomendación de vinos."
+  version: "1.0.0"
+host: "localhost:8080"
+basePath: "/api"
 schemes:
-  - http
+  - "http"
 paths:
   /usuarios:
-    post:
-      summary: Crea un nuevo usuario
-      consumes:
-        - application/json
+    get:
+      summary: "Obtiene una lista de todos los usuarios"
       produces:
-        - application/json
-      parameters:
-        - in: body
-          name: usuario
-          description: Datos del nuevo usuario
-          schema:
-            $ref: '#/definitions/Usuario'
+        - "application/json"
       responses:
-        '200':
-          description: Usuario creado exitosamente
+        200:
+          description: "Una lista de usuarios"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/Usuario'
+          examples:
+            application/json: 
+              - id: 1
+                nombre: "Juan Pérez"
+                fechaNacimiento: "1990-05-15"
+                correoElectronico: "juan.perez@example.com"
+    post:
+      summary: "Crea un nuevo usuario"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "usuario"
+          required: true
           schema:
             $ref: '#/definitions/Usuario'
+          examples:
+            application/json: 
+              nombre: "Ana López"
+              fechaNacimiento: "1985-08-25"
+              correoElectronico: "ana.lopez@example.com"
+      responses:
+        201:
+          description: "Usuario creado exitosamente"
+          schema:
+            $ref: '#/definitions/Usuario'
+          examples:
+            application/json: 
+              id: 2
+              nombre: "Ana López"
+              fechaNacimiento: "1985-08-25"
+              correoElectronico: "ana.lopez@example.com"
+  /usuarios/{id}:
+    get:
+      summary: "Obtiene los detalles de un usuario específico"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          required: true
+          type: "integer"
+          description: "ID del usuario a obtener"
+      responses:
+        200:
+          description: "Detalles del usuario solicitado"
+          schema:
+            $ref: '#/definitions/Usuario'
+          examples:
+            application/json: 
+              id: 1
+              nombre: "Juan Pérez"
+              fechaNacimiento: "1990-05-15"
+              correoElectronico: "juan.perez@example.com"
 definitions:
   Usuario:
-    type: object
+    type: "object"
+    required:
+      - nombre
+      - fechaNacimiento
+      - correoElectronico
     properties:
       id:
-        type: integer
+        type: "integer"
       nombre:
-        type: string
+        type: "string"
       fechaNacimiento:
-        type: string
-        format: date
+        type: "string"
+        format: "date"
       correoElectronico:
-        type: string
+        type: "string"

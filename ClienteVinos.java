@@ -3,8 +3,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.net.http.HttpRequest.BodyPublishers;
+import java.net.http.HttpResponse;
 
 public class ClienteVinos {
 
@@ -21,6 +21,35 @@ public class ClienteVinos {
                 .uri(URI.create(baseUrl + "/usuarios"))
                 .header("Content-Type", "application/json")
                 .POST(BodyPublishers.ofString(jsonUsuario))
+                .build();
+
+        enviarSolicitud(request);
+    }
+
+    public void obtenerUsuario(int idUsuario) {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(baseUrl + "/usuarios/" + idUsuario))
+                .header("Accept", "application/json")
+                .GET()
+                .build();
+
+        enviarSolicitud(request);
+    }
+
+    public void actualizarUsuario(int idUsuario, String jsonUsuarioActualizado) {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(baseUrl + "/usuarios/" + idUsuario))
+                .header("Content-Type", "application/json")
+                .PUT(BodyPublishers.ofString(jsonUsuarioActualizado))
+                .build();
+
+        enviarSolicitud(request);
+    }
+
+    public void eliminarUsuario(int idUsuario) {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(baseUrl + "/usuarios/" + idUsuario))
+                .DELETE()
                 .build();
 
         enviarSolicitud(request);
@@ -44,12 +73,19 @@ public class ClienteVinos {
     public static void main(String[] args) {
         ClienteVinos cliente = new ClienteVinos("http://localhost:8080/api");
 
+        // Ejemplo de uso
+        // Ejemplo de uso
         String jsonUsuario = "{\"nombre\":\"Juan Pérez\",\"fechaNacimiento\":\"1990-05-15\",\"correoElectronico\":\"juan.perez@example.com\"}";
         cliente.crearUsuario(jsonUsuario);
 
-        // Aquí podrías agregar más llamadas a otros métodos, por ejemplo:
-        // cliente.obtenerUsuario(idUsuario);
-        // cliente.actualizarUsuario(jsonUsuarioActualizado);
-        // cliente.eliminarUsuario(idUsuario);
+        // Suponiendo que queremos obtener un usuario con ID 1
+        cliente.obtenerUsuario(1);
+
+        // Actualizar usuario con ID 1
+        String jsonUsuarioActualizado = "{\"nombre\":\"Juan Pérez Actualizado\",\"fechaNacimiento\":\"1990-05-15\",\"correoElectronico\":\"juan.perez.actualizado@example.com\"}";
+        cliente.actualizarUsuario(1, jsonUsuarioActualizado);
+
+        // Eliminar usuario con ID 1
+        cliente.eliminarUsuario(1);
     }
 }
