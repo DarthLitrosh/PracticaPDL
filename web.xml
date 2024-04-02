@@ -4,6 +4,9 @@
     <init-param>
         <param-name>jersey.config.server.provider.packages</param-name>
         <param-value>tu.paquete.de.recursos</param-value>
+
+!!!! reemplazar tu.paquete.de.recursos con el paquete donde estén las clases de recursos !!!!
+        
     </init-param>
     <load-on-startup>1</load-on-startup>
 </servlet>
