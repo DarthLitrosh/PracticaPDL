@@ -1,0 +1,14 @@
+<dependencies>
+    <!-- JAX-RS -->
+    <dependency>
+        <groupId>org.glassfish.jersey.containers</groupId>
+        <artifactId>jersey-container-servlet</artifactId>
+        <version>2.35</version>
+    </dependency>
+    <!-- JSON Processing -->
+    <dependency>
+        <groupId>org.glassfish.jersey.media</groupId>
+        <artifactId>jersey-media-json-binding</artifactId>
+        <version>2.35</version>
+    </dependency>
+</dependencies>
