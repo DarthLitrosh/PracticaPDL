@@ -1,3 +1,4 @@
+package Soso.src.main.java;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;

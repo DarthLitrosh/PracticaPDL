@@ -1,3 +1,4 @@
+package Soso.src.main.java;
 @Path("/vinos")
 public class VinoResource {
 

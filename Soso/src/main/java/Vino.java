@@ -1,3 +1,4 @@
+package Soso.src.main.java;
 import java.util.List;
 
 public class Vino {
